@@ -60,18 +60,8 @@ def interp_exp_f(fname):
     # The points we want
     x_out = np.arange(-50,50.0001,100.0/res)
     y_out = np.arange(-50,50.0001,100.0/res)
-    xx, yy = np.meshgrid(x_out,y_out)
-    xx = np.transpose(xx)
-    yy = np.transpose(yy)
     
     # The interpolation variables
-    zi_s = np.zeros(len(x_out)*len(y_out)) 
-    vi_x = np.zeros(len(x_out)*len(y_out)) 
-    vi_y = np.zeros(len(x_out)*len(y_out)) 
-    vi_z = np.zeros(len(x_out)*len(y_out)) 
-    interp_vars = [zi_s, vi_x, vi_y, vi_z]
-   
-    # Interpolate each list separately
     print("  Interpolating data....")
     z_s_i = interpolate.interp2d(x_pts, y_pts, z_s)
     v_x_i = interpolate.interp2d(x_pts, y_pts, v_x)
