@@ -15,7 +15,7 @@ import csv
 import glob
 import argparse
 import numpy as np
-
+from itertools import product
 from scipy import interpolate
 
 def parse_args(args):
@@ -46,12 +46,15 @@ def interp_exp_a(fname, out_dir):
     # The given points
     x_pts = np.asarray(sorted(set(x)))
     y_pts = np.asarray(sorted(set(y)))
-    points = (x,y)
+    points = np.transpose((x,y))
 
     # The points we want
     x_out = np.arange(0,1.0001,1.0/res)
     y_out = np.arange(0,1.0001,1.0/res)
-    out_points = (x_out, y_out)
+    out_points = [[i,j] for i in x_out for j in y_out]
+    x_out = np.transpose(out_points)[0]
+    y_out = np.transpose(out_points)[1]
+
     # Interpolate each list separately
     print("    Interpolating data....")
     vs_x_i  = interpolate.griddata(points, vs_x , out_points)
@@ -60,10 +63,10 @@ def interp_exp_a(fname, out_dir):
     tb_xy_i = interpolate.griddata(points, tb_xy, out_points)
     tb_yz_i = interpolate.griddata(points, tb_yz, out_points)
     dp_i    = interpolate.griddata(points, dp   , out_points)
-    
+
     out_file = os.path.join(out_dir, os.path.basename(fname).replace('.txt','_interp.txt'))
     print("    Writing data....")
-    np.savetxt(out_file,np.transpose([x_out,y_out,vs_x_i,vs_y_i,tb_xy_i,tb_yz_i,dp_i]))
+    np.savetxt(out_file,np.transpose([x_out,y_out,vs_x_i,vs_y_i,vs_z_i,tb_xy_i,tb_yz_i,dp_i]))
 
 
 def interp_exp_c(fname, out_dir):
@@ -74,7 +77,7 @@ def interp_exp_c(fname, out_dir):
     x, y, vs_x, vs_y, vs_z, vb_x, vb_y, tb_xy, tb_yz, dp = np.loadtxt(fname, unpack=True)
     
     #v_norm = np.sqrt(v_x**2 + v_y**2)
-    res = 100 #int(fname.split(os.sep)[-1][5:8])
+    res = int(fname.split(os.sep)[-1][5:8])
     
     # The given points
     x_pts = np.asarray(sorted(set(x)))
@@ -82,9 +85,12 @@ def interp_exp_c(fname, out_dir):
     points = (x,y)
 
     # The points we want
-    x_out = np.arange(-50,50.0001,100.0/res)
-    y_out = np.arange(-50,50.0001,100.0/res)
-    out_points = (x_out,y_out)
+    x_out = np.arange(0,1.0001,1.0/res)
+    y_out = np.arange(0,1.0001,1.0/res)
+    out_points = [[i,j] for i in x_out for j in y_out]
+    x_out = np.transpose(out_points)[0]
+    y_out = np.transpose(out_points)[1]
+
 
     # Interpolate each list separately
     print("    Interpolating data....")
@@ -120,7 +126,9 @@ def interp_exp_f(fname, out_dir):
     # The points we want
     x_out = np.arange(-50,50.0001,100.0/res)
     y_out = np.arange(-50,50.0001,100.0/res)
-    out_points = (x_out,y_out)
+    out_points = [[i,j] for i in x_out for j in y_out]
+    x_out = np.transpose(out_points)[0]
+    y_out = np.transpose(out_points)[1]
 
     # Interpolate each list separately
     print("    Interpolating data....")
