@@ -108,7 +108,7 @@ def assimilate_exp_a(file_list, model, opts):
     with open('ismip_a_20_' + model + '_combined.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        np.savetxt(f, data, delimiter=',')
+        np.savetxt(f, data, fmt=fmt, delimiter=',')
  
 
 def assimilate_exp_c(file_list, model, opts):
@@ -157,7 +157,7 @@ def assimilate_exp_c(file_list, model, opts):
     with open('ismip_c_80_' + model + '_combined .txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        np.savetxt(f, data, delimiter=',')
+        np.savetxt(f, data, fmt=fmt, delimiter=',')
 
     X, Y, VS_X, VS_Y, VS_Z, VB_X, VB_Y, TB_XY, TB_YZ, DP = [], [], [], [], [], [], [], [], [], []
     for fname in res_20:
@@ -194,7 +194,7 @@ def assimilate_exp_c(file_list, model, opts):
     with open('ismip_c_20_' + model + '_combined.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        np.savetxt(f, data, delimiter=',')
+        np.savetxt(f, data, fmt=fmt, delimiter=',')
  
 
 def assimilate_exp_f(file_list, model, opts):
@@ -228,7 +228,7 @@ def assimilate_exp_f(file_list, model, opts):
     with open('ismip_f_100_' + model + '_combined.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        np.savetxt(f, data, delimiter=',')
+        np.savetxt(f, data, fmt=fmt, delimiter=',')
 
 
 def analyze_lmla(opts):
