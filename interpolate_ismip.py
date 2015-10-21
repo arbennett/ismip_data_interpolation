@@ -41,7 +41,7 @@ def interp_exp_a(fname, out_dir):
     x, y, vs_x, vs_y, vs_z, tb_xy, tb_yz, dp = np.loadtxt(fname, unpack=True)
      
     #v_norm = np.sqrt(v_x**2 + v_y**2)
-    res = int(fname.split(os.sep)[-1][5:8])
+    res = 40  #int(fname.split(os.sep)[-1][5:8])
     
     # The given points
     x_pts = np.asarray(sorted(set(x)))
@@ -77,7 +77,7 @@ def interp_exp_c(fname, out_dir):
     x, y, vs_x, vs_y, vs_z, vb_x, vb_y, tb_xy, tb_yz, dp = np.loadtxt(fname, unpack=True)
     
     #v_norm = np.sqrt(v_x**2 + v_y**2)
-    res = int(fname.split(os.sep)[-1][5:8])
+    res = 40  #int(fname.split(os.sep)[-1][5:8])
     
     # The given points
     x_pts = np.asarray(sorted(set(x)))
@@ -116,7 +116,7 @@ def interp_exp_f(fname, out_dir):
     x, y, z_s, v_x, v_y, v_z = np.loadtxt(fname, unpack=True)
 
     #v_norm = np.sqrt(v_x**2 + v_y**2)
-    res = 100 #int(fname.split(os.sep)[-1][5:8])
+    res = 40 #int(fname.split(os.sep)[-1][5:8])
     
     # The given points
     x_pts = np.asarray(sorted(set(x)))
@@ -161,13 +161,12 @@ def analyze_lmla(opts):
         if len(files) == 0:
             print("  WARNING: Could not find data for " + run + ".  Continuing....")
             continue
-        os.mkdir(os.path.join(out_dir, run))
         for f in files:
             fname = os.path.basename(f).replace('.txt','')
             exp_type = fname[4]
             if exp_type not in ['a','c','f']:
                 continue
-            exp_functs[exp_type](f, os.path.join(opts.output,'lmla',run))
+            exp_functs[exp_type](f, os.path.join(opts.output,'lmla'))
 
 
 def analyze_stokes(opts):
@@ -189,13 +188,12 @@ def analyze_stokes(opts):
         if len(files) == 0:
             print("  WARNING: Could not find data for " + run + ".  Continuing....")
             continue
-        os.mkdir(os.path.join(out_dir, run))
         for f in files:
             fname = os.path.basename(f).replace('.txt','')
             exp_type = fname[4]
             if exp_type not in ['a','c','f']:
                 continue
-            exp_functs[exp_type](f, os.path.join(opts.output,'stokes', run))
+            exp_functs[exp_type](f, os.path.join(opts.output,'stokes'))
 
 
 def interpolate_ismip(opts):
