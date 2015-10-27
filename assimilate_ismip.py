@@ -73,7 +73,7 @@ def assimilate_exp_a(file_list, model, opts):
         TB_XY[0], TB_XY[1], TB_XY[2], TB_XY[3], TB_YZ[0], TB_YZ[1], 
         TB_YZ[2], TB_YZ[3], DP[0], DP[1], DP[2], DP[3]])
     fmt = "%.6f"
-    with open('ismip_a_80_' + model +'_combined.txt','wb') as f:
+    with open('ismip-hom-a.0080.' + model +'.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         np.savetxt(f, data, fmt=fmt, delimiter=',')
@@ -105,7 +105,7 @@ def assimilate_exp_a(file_list, model, opts):
         TB_XY[0], TB_XY[1], TB_XY[2], TB_XY[3], TB_YZ[0], TB_YZ[1], 
         TB_YZ[2], TB_YZ[3], DP[0], DP[1], DP[2], DP[3]])
     fmt = "%.6f"
-    with open('ismip_a_20_' + model + '_combined.txt','wb') as f:
+    with open('ismip-home-a.0020.' + model + '.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         np.savetxt(f, data, fmt=fmt, delimiter=',')
@@ -154,7 +154,7 @@ def assimilate_exp_c(file_list, model, opts):
         TB_XY[0], TB_XY[1], TB_XY[2], TB_XY[3], TB_YZ[0], TB_YZ[1], 
         TB_YZ[2], TB_YZ[3], DP[0], DP[1], DP[2], DP[3]])
     fmt = "%.6f"
-    with open('ismip_c_80_' + model + '_combined .txt','wb') as f:
+    with open('ismip-hom-c.0080.' + model + '.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         np.savetxt(f, data, fmt=fmt, delimiter=',')
@@ -191,7 +191,7 @@ def assimilate_exp_c(file_list, model, opts):
         TB_XY[0], TB_XY[1], TB_XY[2], TB_XY[3], TB_YZ[0], TB_YZ[1], 
         TB_YZ[2], TB_YZ[3], DP[0], DP[1], DP[2], DP[3]])
     fmt = "%.6f"
-    with open('ismip_c_20_' + model + '_combined.txt','wb') as f:
+    with open('ismip-hom-c.0020.' + model + '.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         np.savetxt(f, data, fmt=fmt, delimiter=',')
@@ -225,7 +225,7 @@ def assimilate_exp_f(file_list, model, opts):
     data = np.transpose([X,Y,VS_X[0], VS_X[1], VS_X[2], VS_X[3],
         VS_Y[0], VS_Y[1], VS_Y[2], VS_Y[3], VS_Z[0], VS_Z[1], VS_Z[2], VS_Z[3]])
     fmt = "%.6f"
-    with open('ismip_f_100_' + model + '_combined.txt','wb') as f:
+    with open('ismip-hom-f.0100.' + model + '.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         np.savetxt(f, data, fmt=fmt, delimiter=',')
