@@ -105,7 +105,7 @@ def assimilate_exp_a(file_list, model, opts):
         TB_XY[0], TB_XY[1], TB_XY[2], TB_XY[3], TB_YZ[0], TB_YZ[1], 
         TB_YZ[2], TB_YZ[3], DP[0], DP[1], DP[2], DP[3]])
     fmt = "%.6f"
-    with open('ismip-home-a.0020.' + model + '.txt','wb') as f:
+    with open('ismip-hom-a.0020.' + model + '.txt','wb') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         np.savetxt(f, data, fmt=fmt, delimiter=',')
