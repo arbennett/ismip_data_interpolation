@@ -44,7 +44,7 @@ def assimilate_exp_a(file_list, model, opts):
     header = ['x', 'y', 'vs_x mean', 'vs_x stdev', 'vs_x min', 'vs_x max', 'vs_y mean',
               'vs_y stdev', 'vs_y min', 'vs_y max', 'tb_xy mean', 'tb_xy stdev', 
               'tb_xy min', 'tb_xy max', 'tb_yz mean', 'tb_yz stdev', 'tb_yz min',
-              'tb_yz max']
+              'tb_yz max','dp mean','dp stdev','dp min','dp max']
 
     X, Y, VS_X, VS_Y, VS_Z, TB_XY, TB_YZ, DP = [],[],[],[],[],[],[],[]
     for fname in res_80:
@@ -120,7 +120,7 @@ def assimilate_exp_c(file_list, model, opts):
               'vb_x mean', 'vb_x stdev', 'vb_x min', 'vb_x max', 'vb_y mean', 
               'vb_y stdev', 'vb_y min', 'vb_y max', 'tb_xy mean', 'tb_xy stdev', 
               'tb_xy min', 'tb_xy max', 'tb_yz mean', 'tb_yz stdev', 'tb_yz min',
-              'tb_yz max']
+              'tb_yz max','dp mean','dp stdev','dp min','dp max']
 
     X, Y, VS_X, VS_Y, VS_Z, VB_X, VB_Y, TB_XY, TB_YZ, DP = [], [], [], [], [], [], [], [], [], []
     for fname in res_20:
@@ -200,8 +200,8 @@ def assimilate_exp_c(file_list, model, opts):
 def assimilate_exp_f(file_list, model, opts):
     print("Beginning analysis of experiment F for " + model + " models....")
     res_100 = fnmatch.filter(file_list, '?????00?_interp.txt')
-    header = ['x', 'y', 'vs_x mean', 'vs_x stdev', 'vs_x min', 'vs_x max', 'vs_y mean',
-              'z mean', 'z stdev', 'z min', 'z max', 'vs_y stdev', 'vs_y min', 
+    header = ['x', 'y', 'z mean', 'z stdev', 'z min', 'z max','vs_x stdev', 
+              'vs_x min', 'vs_x max', 'vs_y mean', 'vs_y stdev', 'vs_y min', 
               'vs_y max', 'vs_z mean', 'vs_z stdev', 'vs_z min', 'vs_z max']
    
     X, Y, Z, VS_X, VS_Y, VS_Z = [],[],[],[],[],[]
@@ -222,7 +222,7 @@ def assimilate_exp_f(file_list, model, opts):
     VS_Y = get_stats(VS_Y)
     VS_Z = get_stats(VS_Z)
 
-    data = np.transpose([X,Y,VS_X[0], VS_X[1], VS_X[2], VS_X[3],
+    data = np.transpose([X,Y,Z[0],Z[1],Z[2],Z[3],VS_X[0], VS_X[1], VS_X[2], VS_X[3],
         VS_Y[0], VS_Y[1], VS_Y[2], VS_Y[3], VS_Z[0], VS_Z[1], VS_Z[2], VS_Z[3]])
     fmt = "%.6f"
     with open('ismip-hom-f.0100.' + model + '.txt','wb') as f:
